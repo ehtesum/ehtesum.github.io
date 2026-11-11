@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://ehtesum.github.io/" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+  <title>Ehtesum-Ul-Islam — Software Engineer &amp; AI/Systems Researcher</title>
+  <meta name="description" content="Ehtesum-Ul-Islam — Software & Systems Engineer (Python, C++, Distributed Backends) and AI/ML Researcher (M.Sc. LUT University, Finland)." />
+  <meta property="og:title" content="Ehtesum-Ul-Islam — Software Engineer &amp; AI/Systems Researcher" />
+  <meta property="og:description" content="Software & Systems Engineer building high-throughput backends and reliable AI architectures." />
+  <meta property="og:url" content="https://ehtesum.github.io/" />
+  <meta property="og:type" content="website" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-subtle: #fafafa;
+      --border: #ececec;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #2557d6;
+      --accent-light: #eef3fd;
+      --radius: 8px;
+      --max: 760px;
+      --nav-h: 64px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-wrap: balance;
+    }
+
+    p,
+    li {
+      text-wrap: pretty;
+    }
+
+    ::selection {
+      background: var(--accent-light);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      height: var(--nav-h);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-logo:hover {
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links a.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    /* LAYOUT */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 3.25rem 0 1rem;
+      scroll-margin-top: var(--nav-h);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      max-width: 660px;
+    }
+
+    .sub-title {
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin: 2.25rem 0 0.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: var(--nav-h);
+    }
+
+    /* ABOUT (Single-column, no photo) */
+    #about {
+      padding-top: 4rem;
+    }
+
+    #about h1 {
+      font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin-bottom: 0.65rem;
+    }
+
+    #about h1 strong {
+      font-weight: 700;
+    }
+
+    .hero-role {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      padding-left: 0.75rem;
+      border-left: 2px solid var(--accent);
+      line-height: 1.4;
+    }
+
+    .hero-bio {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .hero-bio:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .hero-links a {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .hero-links a:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      text-decoration: none;
+    }
+
+    /* SHARED ROW */
+    .row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 0.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .row-body h4 {
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .row-body .org {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .row-body .loc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .row-body ul {
+      margin-top: 0.55rem;
+      padding-left: 1.1rem;
+    }
+
+    .row-body li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+      line-height: 1.55;
+    }
+
+    .row-body p.plain {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* PUBLICATIONS */
+    .pub-year {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: 0.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pub-entries {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .pub-title {
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .pub-authors .me {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .pub-venue {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .pub-summary {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 0.45rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 0.1rem 0.5rem;
+      margin-right: 0.4rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .badge:hover {
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--muted);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    }
+
+    .project-body {
+      padding: 1.15rem 1.25rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .project-body h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.38;
+      margin-bottom: 0.45rem;
+    }
+
+    .project-body p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 0.85rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      display: inline-block;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 0.15rem 0.55rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .project-link:hover {
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 640px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    .modal-box h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      padding-right: 2.5rem;
+    }
+
+    .modal-box p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.85rem;
+    }
+
+    .modal-box ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-box li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      line-height: 1.55;
+    }
+
+    .modal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: var(--max);
+      margin: 4rem auto 0;
+      padding: 1.75rem 1.5rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    /* DARK MODE */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111111;
+        --surface: #181818;
+        --surface-subtle: #141414;
+        --border: #2a2a2a;
+        --text: #e6e6e6;
+        --muted: #9a9a9a;
+        --accent: #6c9bff;
+        --accent-light: #1a2233;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #111111;
+      --surface: #181818;
+      --surface-subtle: #141414;
+      --border: #2a2a2a;
+      --text: #e6e6e6;
+      --muted: #9a9a9a;
+      --accent: #6c9bff;
+      --accent-light: #1a2233;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-links {
+        gap: 0.8rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#about">Ehtesum-Ul-Islam</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#workshops">Workshops</a></li>
+        </ul>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" aria-pressed="false" title="Toggle theme">◐</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about">
+      <h1><strong>Ehtesum-Ul-Islam</strong></h1>
+      <p class="hero-role">Software &amp; Systems Engineer &bull; AI Reliability Researcher &bull; Finland</p>
+      <p class="hero-bio">
+        I am a Software &amp; Systems Engineer with hands-on production experience building Python/Django and FastAPI microservices, real-time telemetry ingestion pipelines, tuned PostgreSQL schemas, and Dockerized Linux deployments.
+      </p>
+      <p class="hero-bio">
+        Alongside software engineering, I am completing an M.Sc. in Software Engineering &amp; Digital Transformation at LUT University, Finland. My research investigates inference-time compute allocation, multimodal document understanding, causal consistency verification, and calibrated selective abstention in language models.
+      </p>
+      <div class="hero-links">
+        <a href="https://github.com/ehtesum" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ehtesum/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:ehtesumulislam@gmail.com">Email</a>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & EDUCATION -->
+    <section id="experience">
+      <h2 class="section-title">Experience &amp; Education</h2>
+      <p class="section-intro">Production backend/systems engineering paired with graduate research in Finland.</p>
+
+      <h3 class="sub-title">Work Experience</h3>
+      <div class="row">
+        <div class="row-meta">Mar 2022 – Jun 2023</div>
+        <div class="row-body">
+          <h4>Junior Software Engineer</h4>
+          <p class="org">TechOptions &bull; Full-time</p>
+          <p class="loc">Dhaka, Bangladesh (Remote collaborations with Germany)</p>
+          <ul>
+            <li>Engineered real-time operational and temperature telemetry ingestion pipelines for airfield OT sensors in Germany with zero data drop.</li>
+            <li>Spearheaded zero-downtime cloud migration of backend services to Azure Linux VMs with NGINX reverse proxies and SSL/TLS termination for Solorrow GmbH.</li>
+            <li>Built Django/FastAPI REST microservices with JWT/RBAC and tuned PostgreSQL schemas (3NF/BCNF, B-Tree indexing) for the UNDP / MoEFCC National Climate Portal (CCIKM).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-meta">Nov 2021 – Feb 2022</div>
+        <div class="row-body">
+          <h4>Software Engineering Intern</h4>
+          <p class="org">TechOptions &bull; Internship</p>
+          <p class="loc">Dhaka, Bangladesh</p>
+          <ul>
+            <li>Developed administrative dashboards, REST endpoints, and user access control modules in Django and PostgreSQL for the UNDP CCIKM platform.</li>
+            <li>Authored automated unit test suites and schema migration checks to prevent deployment regressions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Education</h3>
+      <div class="row">
+        <div class="row-meta">2024 – 2026</div>
+        <div class="row-body">
+          <h4>M.Sc. in Software Engineering and Digital Transformation</h4>
+          <p class="org">LUT University</p>
+          <p class="loc">Lappeenranta, Finland</p>
+          <ul>
+            <li>Focus: Cloud Systems Architecture, DevSecOps Automation, Distributed Software Systems, and Trustworthy Foundation Models.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-meta">2021</div>
+        <div class="row-body">
+          <h4>B.Sc. in Computer Science and Engineering</h4>
+          <p class="org">North South University</p>
+          <p class="loc">Dhaka, Bangladesh</p>
+          <ul>
+            <li>Core Focus: Operating Systems, Relational Database Systems, Computer Networks, and Embedded ML.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH & PUBLICATIONS -->
+    <section id="research">
+      <h2 class="section-title">Research &amp; Publications</h2>
+      <p class="section-intro">
+        Research focus: grounded test-time compute allocation, causal consistency verification, and calibrated abstention in language and vision-language models.
+      </p>
+
+      <div class="row">
+        <div class="pub-year">2026</div>
+        <div class="pub-entries">
+          <div>
+            <p class="pub-title">Think Longer or Look Closer? Test-Time Scaling for Visual Document Understanding</p>
+            <p class="pub-authors"><span class="me">Ehtesum-ul-Islam</span> et al.</p>
+            <p class="pub-venue">Under Review &mdash; ACL 2026</p>
+            <p class="pub-summary">Introduced Grounded Value-of-Compute (GVoC) and a Dual-View Gated Architecture that selectively acquires high-resolution crops while preserving table headers; achieved 91.0% accuracy on DocVQA/TableBench (+9.0% over baseline) with 28.1% fewer reasoning tokens than multi-agent debate.</p>
+            <a class="badge" href="https://github.com/ehtesum/gvoc-engine" target="_blank" rel="noopener">Code (gvoc-engine)</a>
+          </div>
+
+          <div>
+            <p class="pub-title">STRAND: Detecting Unsupported Causal Inferences in LLMs</p>
+            <p class="pub-authors"><span class="me">Ehtesum-ul-Islam</span> et al.</p>
+            <p class="pub-venue">Under Review &mdash; ACL 2026</p>
+            <p class="pub-summary">Confidence-shift triage gate paired with a causal verifier against multi-source epistemic manipulation; halted 81.2% of causal manipulation attacks while bypassing 87.5% of routine turns.</p>
+            <a class="badge" href="https://github.com/ehtesum/cognitive-guard" target="_blank" rel="noopener">Code (cognitive-guard)</a>
+          </div>
+
+          <div>
+            <p class="pub-title">ClinSafe-AI: Dual-Pathway Clinical Grounding and Hallucination Guardrails</p>
+            <p class="pub-authors"><span class="me">Ehtesum-ul-Islam</span> et al.</p>
+            <p class="pub-venue">Research Manuscript &mdash; Target: JMIR</p>
+            <p class="pub-summary">Coupled clinical Knowledge Graphs with logit-level confidence estimation across LLaMA-3, Mistral, MedAlpaca, and Mental-LLaMA, reducing hallucinations by 61.9%–68.2% at 100.0% crisis sensitivity.</p>
+            <a class="badge" href="https://github.com/ehtesum/clinsafe-ai" target="_blank" rel="noopener">Code (clinsafe-ai)</a>
+          </div>
+
+          <div>
+            <p class="pub-title">Literature Review on the Impact of DevSecOps on the Software Development Life Cycle, Enhancing Security Efficiency and Compliance</p>
+            <p class="pub-authors"><span class="me">Ehtesum-ul-Islam</span></p>
+            <p class="pub-venue">M.Sc. Thesis Manuscript, LUT University</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="pub-year">2021</div>
+        <div class="pub-entries">
+          <div>
+            <p class="pub-title">Low-Cost Heart Rate Sensor and Mental Stress Detection Using Machine Learning</p>
+            <p class="pub-authors">Asha, N. E. J., <span class="me">Ehtesum-Ul-Islam</span>, &amp; Khan, R.</p>
+            <p class="pub-venue">2021 5th International Conference on Trends in Electronics and Informatics (ICOEI), IEEE Xplore, pp. 1369–1374</p>
+            <a class="badge" href="https://doi.org/10.1109/ICOEI51242.2021.9452873" target="_blank" rel="noopener">IEEE DOI</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-intro">Live open-source repositories organized across production systems engineering and AI reliability research.</p>
+
+      <h3 class="sub-title">Software &amp; Systems Engineering</h3>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">Python &bull; Redis Lua &bull; RabbitMQ &bull; PostgreSQL &bull; K8s</span>
+            <h3>Flash-Sale Distributed Booking Engine</h3>
+            <p>High-concurrency reservation backend with atomic Redis Lua inventory locking, sliding-window rate limiting, RabbitMQ dead-letter retries, Transactional Outbox, and Kubernetes manifests.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('flashSale', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/flash-sale-booking-engine" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">C++17 &bull; POSIX Sockets &bull; 3GPP TS 38.323</span>
+            <h3>5G NR PDCP Packet Reorder Engine</h3>
+            <p>Lightweight C++17 user-space implementation of 3GPP TS 38.323 5G NR PDCP sequence reordering with multi-threaded sliding windows and low-latency flush timers.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('fiveG', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/5G_reorder" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">CUDA / PTX &bull; C++ AVX2 &bull; Python</span>
+            <h3>GPU &amp; CPU Silicon Micro-Benchmarks</h3>
+            <p>Hardware measurement suite quantifying warp divergence penalties, shared-memory bank conflicts (up to 25&times; latency deltas), and L1/L2/GDDR6 memory latency on Turing GPU and Zen 2 CPU.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('graphicsReverse', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/graphics_reverse" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">Python Asyncio &bull; Tor SOCKS5 &bull; GDPR / CCPA</span>
+            <h3>GhostTrace — Digital Footprint &amp; Erasure Tool</h3>
+            <p>OSINT reconnaissance scanner probing 180+ endpoints over optional Tor routing with automated GDPR Article 17 and CCPA data-deletion notice generation.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('ghostTrace', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/ghosttrace_delete_from_internet" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">AI &amp; Machine Learning Research</h3>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">PyTorch &bull; VLMs &bull; Test-Time Compute</span>
+            <h3>GVoC Engine (Visual Document Reasoning)</h3>
+            <p>Cost-aware test-time compute allocation and dual-view crop routing for dense tables and charts, reaching 91.0% accuracy with 28.1% fewer tokens than multi-agent debate.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('gvoc', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/gvoc-engine" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">PyTorch &bull; Epistemic Security &bull; LLMs</span>
+            <h3>Cognitive-Guard (STRAND)</h3>
+            <p>Real-time epistemic defense against generative montage and multi-agent belief manipulation via confidence-shift triage and direct causal claim verification.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('cognitiveGuard', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/cognitive-guard" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">PyTorch &bull; Uncertainty Calibration</span>
+            <h3>DGD — Diagnostic-Guided Deliberation</h3>
+            <p>Epistemic entropy steering controller that monitors competing hypotheses during LLM reasoning to curb post-hoc rationalization and cut wasted inference compute.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('dgd', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/dgd-framework" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <span class="project-tag">PyTorch &bull; Knowledge Graphs &bull; Healthcare AI</span>
+            <h3>ClinSafe-AI Guardrails</h3>
+            <p>Dual-pathway clinical grounding combining structured Knowledge Graphs with logit-level calibration to reduce hallucinations by 61.9%–68.2% while preserving crisis recall.</p>
+            <div class="project-links">
+              <button type="button" class="project-link" onclick="openModal('clinsafe', this)">Details</button>
+              <a class="project-link" href="https://github.com/ehtesum/clinsafe-ai" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Technical Stack</h2>
+      <div class="row">
+        <div class="row-meta">Languages</div>
+        <div class="row-body"><p class="plain">Python, C++ (C++17/20), SQL, Bash, TypeScript</p></div>
+      </div>
+      <div class="row">
+        <div class="row-meta">Backend &amp; Data</div>
+        <div class="row-body"><p class="plain">Django, Django REST Framework, FastAPI, PostgreSQL (3NF/BCNF, B-Tree indexing, query tuning), Redis (Lua scripting), RabbitMQ, Apache Kafka, JWT/OAuth2/RBAC</p></div>
+      </div>
+      <div class="row">
+        <div class="row-meta">AI &amp; Research</div>
+        <div class="row-body"><p class="plain">PyTorch, Hugging Face Transformers, vLLM, llama.cpp, Vision-Language Models, Knowledge Graphs (RDF/SPARQL), Uncertainty Calibration, Selective Prediction</p></div>
+      </div>
+      <div class="row">
+        <div class="row-meta">Cloud &amp; DevOps</div>
+        <div class="row-body"><p class="plain">Docker, Docker Compose, Kubernetes, Linux (Ubuntu/Debian), Microsoft Azure, AWS, NGINX, SSL/TLS, GitHub Actions CI/CD, Pytest</p></div>
+      </div>
+      <div class="row">
+        <div class="row-meta">IT/OT &amp; Security</div>
+        <div class="row-body"><p class="plain">IT General Controls (ITGC) Support, SOX Compliance Frameworks, IT/OT Telemetry &amp; Sensor Interfaces, Access Governance, Vendor &amp; SLA Management</p></div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & LANGUAGES -->
+    <section id="certifications">
+      <h2 class="section-title">Certifications &amp; Languages</h2>
+      <p class="section-intro">Professional technical certifications and spoken language proficiencies.</p>
+      
+      <div class="row">
+        <div class="row-meta">Certifications</div>
+        <div class="row-body">
+          <ul>
+            <li><strong>The Ultimate DevOps Bootcamp</strong> &mdash; Containerization, IT Security &amp; Cloud Administration</li>
+            <li><strong>Docker and Kubernetes for Beginners</strong> &mdash; Infrastructure Management &amp; Security</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-meta">Spoken Languages</div>
+        <div class="row-body">
+          <ul>
+            <li><strong>English:</strong> Professional Working Fluency</li>
+            <li><strong>Finnish:</strong> Working Proficiency (Living in Finland)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section id="workshops">
+      <h2 class="section-title">Workshops &amp; Training</h2>
+      <p class="section-intro">Specialized technical workshops, algorithmic problem-solving bootcamps, and mobile development.</p>
+
+      <div class="row">
+        <div class="row-meta">Workshops</div>
+        <div class="row-body">
+          <ul>
+            <li><strong>Competitive Programming:</strong> Advanced algorithmic paradigms, dynamic programming, graph theory, and high-performance problem solving.</li>
+            <li><strong>Enterprise IT Leadership Workshops:</strong> Technical governance, cross-functional bridge coordination (engineering to operations), and enterprise IT delivery.</li>
+            <li><strong>Android Application Development:</strong> Mobile software architecture, native UI design, Android SDK lifecycle management, and local data persistence.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><span id="copyright-year"></span> Ehtesum-Ul-Islam</p>
+    <p>
+      <a href="https://github.com/ehtesum" target="_blank" rel="noopener">GitHub</a> &middot;
+      <a href="https://www.linkedin.com/in/ehtesum/" target="_blank" rel="noopener">LinkedIn</a> &middot;
+      <a href="mailto:ehtesumulislam@gmail.com">ehtesumulislam@gmail.com</a>
+    </p>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box" id="modal-content"></div>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ehtesum-Ul-Islam",
+    "url": "https://ehtesum.github.io/",
+    "jobTitle": "Software & Systems Engineer",
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "LUT University" },
+      { "@type": "CollegeOrUniversity", "name": "North South University" }
+    ],
+    "knowsAbout": ["Backend Engineering", "Distributed Systems", "Python", "C++", "Vision-Language Models", "AI Safety", "DevOps"],
+    "sameAs": [
+      "https://github.com/ehtesum",
+      "https://www.linkedin.com/in/ehtesum/"
+    ]
+  }
+  </script>
+
+  <script>
+    const projectDetails = {
+      flashSale: {
+        title: "Flash-Sale Distributed Booking Engine",
+        body: `<p>Production-grade high-concurrency reservation engine built to guarantee zero overselling under flash-sale traffic spikes.</p>
+        <ul>
+          <li>Atomic inventory reservation and sliding-window rate limiting via Redis Lua scripts.</li>
+          <li>Asynchronous order persistence with Transactional Outbox, RabbitMQ topic/dead-letter exchanges, exponential backoff retries, and stock compensation.</li>
+          <li>PostgreSQL persistence, Kubernetes deployment manifests, and GitHub Actions CI smoke &amp; integration tests.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/flash-sale-booking-engine" }]
+      },
+      fiveG: {
+        title: "5G NR PDCP Packet Reorder Engine",
+        body: `<p>User-space C++17 implementation of the 3GPP TS 38.323 5G New Radio Packet Data Convergence Protocol (PDCP) reordering layer.</p>
+        <ul>
+          <li>Handles out-of-order UDP packet arrivals with a lock-safe multi-threaded sliding receive window.</li>
+          <li>Configurable t-Reordering flush timers and POSIX socket test harness for deterministic latency profiling.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/5G_reorder" }]
+      },
+      graphicsReverse: {
+        title: "GPU & CPU Silicon Micro-Benchmarks",
+        body: `<p>Low-level architecture probing suite for NVIDIA Turing GPUs and AMD Zen 2 CPUs.</p>
+        <ul>
+          <li>Custom CUDA/PTX kernels measuring warp divergence penalties, shared-memory bank conflicts (up to 25&times; latency delta), warp shuffles, and atomic CAS contention.</li>
+          <li>Memory hierarchy latency stepping across L1 (~45 cycles), L2 (~209 cycles), and GDDR6 (~390 cycles), alongside C++ AVX2 vector benchmarks.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/graphics_reverse" }]
+      },
+      ghostTrace: {
+        title: "GhostTrace — Digital Footprint & Erasure Tool",
+        body: `<p>Privacy reconnaissance and compliance automation utility built with Python asyncio and Flask/SQLite.</p>
+        <ul>
+          <li>Scans 180+ public endpoints with optional Tor SOCKS5 proxy routing to prevent attribution.</li>
+          <li>Generates tailored GDPR Article 17 and CCPA data removal notices for discovered exposures.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/ghosttrace_delete_from_internet" }]
+      },
+      gvoc: {
+        title: "GVoC Engine — Grounded Value-of-Compute for VDU",
+        body: `<p>Core implementation behind <em>Think Longer or Look Closer? Test-Time Scaling for Visual Document Understanding</em> (Under Review, ACL 2026).</p>
+        <ul>
+          <li>Diagnoses legibility blur in compressed document images rather than burning extra reasoning tokens over illegible patches.</li>
+          <li>Dual-View Gated Architecture selectively crops high-resolution regions while preserving row/column table headers, achieving 91.0% accuracy on DocVQA &amp; TableBench with 28.1% fewer tokens than multi-agent debate.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/gvoc-engine" }]
+      },
+      cognitiveGuard: {
+        title: "Cognitive-Guard (STRAND) — Causal Inference Defense",
+        body: `<p>Core implementation behind <em>STRAND: Detecting Unsupported Causal Inferences in LLMs</em> (Under Review, ACL 2026).</p>
+        <ul>
+          <li>Detects multi-source "generative montage" attacks where individually true statements are stitched into fabricated cause-and-effect claims.</li>
+          <li>Combines a lightweight confidence-shift triage gate with source-grounded causal verification, stopping 81.2% of manipulation attempts while bypassing 87.5% of routine queries.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/cognitive-guard" }]
+      },
+      dgd: {
+        title: "DGD — Diagnostic-Guided Deliberation",
+        body: `<p>Test-time compute controller designed to counter the Deliberation Trap in reasoning models.</p>
+        <ul>
+          <li>Monitors epistemic entropy across competing hypotheses (<em>H<sub>1</sub>, ..., H<sub>k</sub></em>) instead of allowing unbounded chain-of-thought rationalization of an initial bias.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/dgd-framework" }]
+      },
+      clinsafe: {
+        title: "ClinSafe-AI — Clinical Grounding & Guardrails",
+        body: `<p>Dual-pathway verification framework for clinical and mental-health language models.</p>
+        <ul>
+          <li>Pairs structured clinical Knowledge Graph verification with logit-level confidence calibration.</li>
+          <li>Evaluated across LLaMA-3, Mistral, MedAlpaca, and Mental-LLaMA: reduced hallucination rates by 61.9%–68.2% while retaining 100.0% crisis sensitivity.</li>
+        </ul>`,
+        links: [{ label: "GitHub Repository", href: "https://github.com/ehtesum/clinsafe-ai" }]
+      }
+    };
+
+    let modalOpener = null;
+    function openModal(key, opener) {
+      modalOpener = opener || document.activeElement;
+      const p = projectDetails[key];
+      const linksHtml = p.links.length
+        ? `<div class="modal-links">${p.links.map(l => `<a class="project-link" href="${l.href}" target="_blank" rel="noopener">${l.label} &#8599;</a>`).join('')}</div>`
+        : '';
+      document.getElementById('modal-content').innerHTML = `
+        <button type="button" class="modal-close" aria-label="Close" onclick="closeModal()">&#10005;</button>
+        <h2 id="modal-title">${p.title}</h2>
+        ${p.body}
+        ${linksHtml}
+      `;
+      const overlay = document.getElementById('modal-overlay');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const focusable = overlay.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (focusable.length) focusable[0].focus();
+      overlay._trapFocus = function (e) {
+        if (e.key !== 'Tab') return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        }
+      };
+      overlay.addEventListener('keydown', overlay._trapFocus);
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('modal-overlay');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('modal-content').innerHTML = '';
+      if (modalOpener) { modalOpener.focus(); modalOpener = null; }
+      if (overlay._trapFocus) { overlay.removeEventListener('keydown', overlay._trapFocus); overlay._trapFocus = null; }
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Theme toggle: system preference by default, saved choice overrides
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches;
+      const sync = () => btn.setAttribute('aria-pressed', String(isDark()));
+      try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') root.dataset.theme = t; } catch (e) { }
+      sync();
+      mq.addEventListener('change', sync);
+      btn.addEventListener('click', () => {
+        const next = isDark() ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) { }
+        sync();
+      });
+    })();
+
+    // Highlight the nav link for the section in view
+    (function () {
+      const links = [...document.querySelectorAll('.nav-links a')];
+      const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+      function update() {
+        const y = window.scrollY + 120;
+        let current = 0;
+        sections.forEach((s, i) => { if (s && s.offsetTop <= y) current = i; });
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) current = links.length - 1;
+        links.forEach((a, i) => a.classList.toggle('active', i === current));
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const yearSpan = document.getElementById('copyright-year');
+      if (yearSpan) {
+        yearSpan.innerHTML = `&copy; ${new Date().getFullYear()}`;
+      }
+    });
+  </script>
+</body>
+
+</html>
+
